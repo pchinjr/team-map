@@ -5,7 +5,9 @@
     "start": "deno run --unstable -A --watch=static/,routes/ dev.ts",
     "build": "deno run -A dev.ts build",
     "preview": "deno run -A main.ts",
-    "update": "deno run -A -r https://fresh.deno.dev/update ."
+    "update": "deno run -A -r https://fresh.deno.dev/update .",
+    "clear:db": "deno run --unstable ./scripts/scripts.ts clear",
+    "seed:db": "deno run --unstable ./scripts/scripts.ts seed"
   },
   "lint": {
     "rules": {
