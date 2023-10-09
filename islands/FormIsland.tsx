@@ -32,15 +32,25 @@ export default function FormIsland() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ name, city }),
-      }).then((response) => response.json()).then((data) => {
-        if (data.status === "success") {
-          L.marker([data.lat, data.lon]).addTo(Map)
-            .bindPopup(`${name}, ${city}`)
-            .openPopup();
-        } else {
-          alert("Failed to add location.");
-        }
-      });
+      }).then((response) => response.json())
+        .then((data) => {
+          if (data.status === "success") {
+            // Ensure that the data structure being dispatched is correct
+            const eventData = {
+              detail: {
+                name,
+                city,
+                lat: data.lat,
+                lon: data.lon,
+              },
+            };
+            document.dispatchEvent(
+              new CustomEvent("locationAdded", eventData),
+            );
+          } else {
+            alert("Failed to add location.");
+          }
+        });
     });
   }
 
