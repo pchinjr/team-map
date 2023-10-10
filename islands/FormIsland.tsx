@@ -1,9 +1,8 @@
 // islands/FormIsland.tsx
+/// <reference types="https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/master/types/leaflet/index.d.ts" />
+
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { useState } from "preact/hooks";
-
-// deno-lint-ignore no-explicit-any
-declare const L: any;
 
 export default function FormIsland() {
   // State to store feedback message
@@ -37,7 +36,8 @@ export default function FormIsland() {
       event.preventDefault();
       const name = (document.getElementById("name") as HTMLInputElement).value;
       const city = (document.getElementById("city") as HTMLInputElement).value;
-      const country = (document.getElementById("country") as HTMLInputElement).value;
+      const country =
+        (document.getElementById("country") as HTMLInputElement).value;
 
       fetch("/api/save_location", {
         method: "POST",
@@ -46,12 +46,12 @@ export default function FormIsland() {
         },
         body: JSON.stringify({ name, city, country }),
       }).then(async (response) => {
-          if(!response.ok) {
-            const error=await response.json();
-            throw new Error(error.message);
-          }
-          return response.json()
-      }) 
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.message);
+        }
+        return response.json();
+      })
         .then((data) => {
           if (data.status === "success") {
             // Ensure that the data structure being dispatched is correct
