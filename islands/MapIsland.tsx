@@ -1,6 +1,12 @@
+// We are declaring the Leaflet library (L) as an ambient constant, which will be globally available.
+// The exact types for this library might not be directly available or may be complex to define,
+// so for simplicity and to ensure compatibility, we are using the 'any' type.
+// The Deno linter typically discourages the use of 'any' due to the loss of type safety,
+// but in this instance, we are consciously ignoring the lint warning.
 // deno-lint-ignore no-explicit-any
 declare const L: any;
-import { LatLngTuple } from "../types/leaflet.d.ts";
+
+import type { LatLngTuple } from "../types/leaflet.d.ts";
 import { useEffect, useRef } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 
@@ -19,7 +25,7 @@ type LocationAddedEventDetail = {
 };
 
 export default function MapIsland() {
-  const mapRef = useRef<L.Map | L.LayerGroup| null>(null); // Create a ref to store the map instance
+  const mapRef = useRef<L.Map | L.LayerGroup | null>(null); // Create a ref to store the map instance
   const markersRef = useRef<LatLngTuple[]>([]); // To store the coordinates of all the markers
 
   const initializeMap = async () => {
@@ -42,9 +48,14 @@ export default function MapIsland() {
       }
     });
 
-    // Fit the map view to contain all markers
+    // Fit the map view to contain all markers.
+    // Before calling the 'fitBounds' method, we first check if 'mapRef.current' exists and there are markers.
+    // Then, we ensure 'fitBounds' exists on 'mapRef.current' (by treating it as an instance of L.Map)
+    // before making the call. This provides a safety check against potential type issues.
     if (mapRef.current && markersRef.current.length) {
-      mapRef.current.fitBounds(markersRef.current);
+      if ((mapRef.current as L.Map).fitBounds) {
+        (mapRef.current as L.Map).fitBounds(markersRef.current);
+      }
     }
   };
 
