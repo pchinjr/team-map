@@ -8,7 +8,8 @@ import * as $2 from "./routes/api/get_locations.ts";
 import * as $3 from "./routes/api/save_location.ts";
 import * as $4 from "./routes/index.tsx";
 import * as $$0 from "./islands/FormIsland.tsx";
-import * as $$1 from "./islands/MapIsland.tsx";
+import * as $$1 from "./islands/LocationsListIsland.tsx";
+import * as $$2 from "./islands/MapIsland.tsx";
 
 const manifest = {
   routes: {
@@ -20,7 +21,8 @@ const manifest = {
   },
   islands: {
     "./islands/FormIsland.tsx": $$0,
-    "./islands/MapIsland.tsx": $$1,
+    "./islands/LocationsListIsland.tsx": $$1,
+    "./islands/MapIsland.tsx": $$2,
   },
   baseUrl: import.meta.url,
 };

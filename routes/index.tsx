@@ -1,5 +1,6 @@
 import MapIsland from "../islands/MapIsland.tsx";
 import FormIsland from "../islands/FormIsland.tsx";
+import LocationsListIsland from "../islands/LocationsListIsland.tsx";
 
 export default function HomePage() {
   return (
@@ -16,6 +17,7 @@ export default function HomePage() {
       <body>
         <MapIsland />
         <FormIsland />
+        <LocationsListIsland />
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
       </body>
     </>
