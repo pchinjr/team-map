@@ -2,7 +2,7 @@ const args = Deno.args;
 
 async function clearLocationsDb() {
   const kv = await Deno.openKv();
-  
+
   const keysToDelete = [];
   for await (const record of kv.list({ prefix: ["locations"] })) {
     keysToDelete.push(record.key);
@@ -24,9 +24,21 @@ async function seedLocationsDb() {
 
   const kv = await Deno.openKv();
 
-  const location1: LocationValue = { city: "New York", lat: 40.7128, lon: -74.0060 };
-  const location2: LocationValue = { city: "Los Angeles", lat: 34.0522, lon: -118.2437 };
-  const location3: LocationValue = { city: "Chicago", lat: 41.8781, lon: -87.6298 };
+  const location1: LocationValue = {
+    city: "New York",
+    lat: 40.7128,
+    lon: -74.0060,
+  };
+  const location2: LocationValue = {
+    city: "Los Angeles",
+    lat: 34.0522,
+    lon: -118.2437,
+  };
+  const location3: LocationValue = {
+    city: "Chicago",
+    lat: 41.8781,
+    lon: -87.6298,
+  };
 
   await kv.set(["locations", "John"], location1);
   await kv.set(["locations", "Emma"], location2);

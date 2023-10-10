@@ -47,7 +47,7 @@ export default function MapIsland() {
       ) => {
         const customEvent = event as CustomEvent<LocationAddedEventDetail>;
         const newData = customEvent.detail;
-        if(mapRef.current) {
+        if (mapRef.current) {
           L.marker([newData.lat, newData.lon]).addTo(mapRef.current)
             .bindPopup(`${newData.name}, ${newData.city}`)
             .openPopup();
