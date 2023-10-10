@@ -1,5 +1,3 @@
-// routes/api/save_location.ts
-
 import { Handlers } from "$fresh/server.ts";
 
 async function getGeolocation(city: string, country: string) {

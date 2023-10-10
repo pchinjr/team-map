@@ -1,4 +1,3 @@
-// routes/api/get_locations.ts
 import { Handlers } from "$fresh/server.ts";
 
 type LocationValue = {

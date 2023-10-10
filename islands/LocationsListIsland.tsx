@@ -1,4 +1,3 @@
-// islands/LocationsListIsland.tsx
 import { useEffect, useState } from "preact/hooks";
 
 type LocationData = {

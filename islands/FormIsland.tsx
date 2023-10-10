@@ -1,6 +1,3 @@
-// islands/FormIsland.tsx
-/// <reference types="https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/master/types/leaflet/index.d.ts" />
-
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { useState } from "preact/hooks";
 
